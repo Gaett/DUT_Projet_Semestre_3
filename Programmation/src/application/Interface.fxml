@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InterfaceController">
+   <children>
+      <VBox prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane prefHeight="51.0" prefWidth="250.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="startButton" disable="true" mnemonicParsing="false" onMouseClicked="#lancerSimulation" prefHeight="25.0" prefWidth="86.0" text="Démarrer ▶" GridPane.rowIndex="1" />
+                  <Button fx:id="pauseButton" mnemonicParsing="false" onMouseClicked="#pauserSimulation" prefHeight="25.0" prefWidth="105.0" text="Pause ⏸" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin></Button>
+                  <Button fx:id="resetButton" mnemonicParsing="false" onMouseClicked="#resetSimulation" prefHeight="25.0" prefWidth="189.0" text="Réinitialiser ↺" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="-10.0" />
+                     </GridPane.margin></Button>
+               </children>
+            </GridPane>
+            <Label prefHeight="42.0" prefWidth="261.0" text="Nombre de lignes (La carte est carrée):" wrapText="true">
+               <VBox.margin>
+                  <Insets left="2.0" />
+               </VBox.margin>
+            </Label>
+            <GridPane prefHeight="2.0" prefWidth="250.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="166.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.0" minWidth="10.0" prefWidth="84.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="creerButton" mnemonicParsing="false" onMouseClicked="#creerCarte" text="Créer" GridPane.columnIndex="1" />
+                  <TextField fx:id="size" onKeyPressed="#keyEnter" promptText="Exemple :  12" />
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </GridPane>
+            <Label fx:id="pos" prefHeight="44.0" prefWidth="241.0" text="Position de la souris">
+               <VBox.margin>
+                  <Insets left="2.0" top="10.0" />
+               </VBox.margin></Label>
+            <Label prefHeight="39.0" prefWidth="241.0" text="Modification de la carte : ">
+               <VBox.margin>
+                  <Insets left="2.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="suppressButton" alignment="BASELINE_LEFT" disable="true" layoutX="10.0" layoutY="117.0" mnemonicParsing="false" onMouseClicked="#supprimerContenu" prefHeight="28.0" prefWidth="250.0" text="Supprimer Case">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="74.0" />
+               </padding>
+            </Button>
+            <Button fx:id="chargeButton" alignment="BASELINE_LEFT" disable="true" mnemonicParsing="false" onMouseClicked="#poserStation" prefHeight="65.0" prefWidth="300.0" text="Ajouter Station">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/PowerPlant_01.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Button>
+            <Button fx:id="habitationButton" alignment="BASELINE_LEFT" disable="true" mnemonicParsing="false" onMouseClicked="#poserHabitation" prefHeight="65.0" prefWidth="300.0" text="Ajouter Maison">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/HouseV2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Button>
+            <Button fx:id="commerceButton" alignment="BASELINE_LEFT" disable="true" mnemonicParsing="false" onMouseClicked="#poserCommerce" prefHeight="65.0" prefWidth="300.0" text="Ajouter Commerce">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/ShopV2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Button>
+            <Button fx:id="routeButton" alignment="BASELINE_LEFT" disable="true" mnemonicParsing="false" onMouseClicked="#poserRoute" prefHeight="65.0" prefWidth="300.0" text="Ajouter Route">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/herbe.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Button>
+            <Label prefHeight="40.0" prefWidth="244.0" text="Interaction avec la carte : ">
+               <VBox.margin>
+                  <Insets left="2.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="robotButton" alignment="BASELINE_LEFT" disable="true" mnemonicParsing="false" onMouseClicked="#poserRobot" prefHeight="65.0" prefWidth="300.0" text="Ajouter Robot">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/robot01-1.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+      <ScrollPane layoutX="243.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="649.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="251.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane fx:id="canvasScrollPane" minHeight="0.0" minWidth="0.0">
+               <children>
+                  <Canvas fx:id="mapDisplay" height="1000.0" layoutX="-14.0" onMouseMoved="#onMouseMoved" onMousePressed="#onMousePressedMap" width="1000.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <VBox layoutX="828.0" layoutY="6.0" prefHeight="700.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane prefHeight="704.0" prefWidth="250.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="50.0" minHeight="26.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="578.4285888671875" minHeight="250.0" prefHeight="561.2857055664062" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="290.0" minHeight="11.5714111328125" prefHeight="28.71429443359375" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Liste des robots actifs :" wrapText="true" />
+                  <TextArea fx:id="listRobots" editable="false" prefHeight="614.0" prefWidth="250.0" wrapText="true" GridPane.rowIndex="1" />
+                  <GridPane GridPane.rowIndex="2">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.28564453125" minWidth="10.0" prefWidth="191.28564453125" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.4285888671875" minWidth="10.0" prefWidth="58.71435546875" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children> 
+                        <Label text="Nombre de tâches disponibles :" wrapText="true" />
+                        <Label fx:id="compteurTaches" prefHeight="16.0" prefWidth="46.0" text="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
